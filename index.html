@@ -34,8 +34,10 @@
         crossorigin=""></script>
 
         <!-- Include  countries data -->
-        <script src="data/countries.geojson"></script>
+        <script src=""></script>
+        <!-- <script src="data/countries.geojson"></script> -->
         <script src="data/markers.js"></script>
+        
         <style>
             #map {
                 height: 400px;
@@ -71,7 +73,7 @@
             } else if (popEst > 5000000) {
                 return 'blue';
             } else {
-                return 'green';
+                return '#008697';
             }
 
         }
@@ -96,81 +98,7 @@
             countries,
             {style : countriesStyle}
         ).addTo(map);
-        //  map.fitBounds(countriesLayer.getBounds());
-
-        /** ================Define where your markers will appear======================== */
-        // var point = [43.866667, 18.416667];
       
-        // marker 1
-        var point = [3.3731, 29.9189];
-
-        // marker 2
-        var cameroon = [7.3697, 12.3547];
-
-        var circle = L.circle(
-            point,
-            10000,
-            {
-                color: 'purple',
-                fillColor: 'red',
-                fillOpacity : 0.8
-
-            }
-        ).addTo(map);
-
-        var marker = L.marker(point).addTo(map);
-
-        
-        var greenIcon = L.icon(
-            {
-                iconUrl : 'http://leafletjs.com/examples/custom-icons/leaf-green.png',
-                shadowUrl : 'http://leafletjs.com/examples/custom-icons/leaf-shadow.png',
-                iconSize : [38, 95],
-                shadowSize: [50,64],
-                iconAnchor : [22, 94],
-                shadowAnchor : [4, 62],
-                popupAnchor : [-3, -76]
-            }
-        );
-
-    //     // Defining the marker
-    //     var myMarker = L.marker(point);        
-    //     myMarker.addTo(map); //add the marker to the map
-       
-    //    //Bind a popup to the marker
-    //     myMarker.bindPopup(
-    //         '<img style="width: 100%" src="https://gnrc.net/wp-content/uploads/2022/10/Sandrine_Nkurunziza.jpg"> <p class="text-center">Sandrine Nkurunziza <br> Contact Person GNRC Burundi',
-    //         '<div style="text-align:center"><img style="width: 80px"  src="https://gnrc.net/wp-content/uploads/2022/10/Sandrine_Nkurunziza.jpg"><p class="text-center" >Sandrine Nkurunziza</p> </div>',
-
-    //         {minWidth : 256 , autoPan: false}
-    //     );
-
-    //     // show pop on mouseover
-    //     myMarker.on('mouseover', function (e) {
-    //         this.openPopup();
-    //     });
-    //     // closepopup on mouseout
-    //     myMarker.on('mouseout', function (e) {
-    //         this.closePopup();
-    //     });
-
-
-
-    //     var cameroonMarker = L.marker(cameroon);
-    //     cameroonMarker.addTo(map);
-       
-       
-    //     cameroonMarker.bindPopup(
-    //         '<div style="text-align:center"><img style="width: 80px"  src="https://gnrc.net/wp-content/uploads/2022/10/Alexander_Gwanvalla.jpg"><p class="text-center" >Mr. Alexander Gwanvalla</p> <p class="text-center">Contact Person, GNRC Cameroon. </p></div>',
-    //         {maxWidth : 156 , autoPan: false}
-    //     );
-
-    //     cameroonMarker.on('mouseover', function (e) {
-    //         this.openPopup();
-    //     });
-    //     cameroonMarker.on('mouseout', function (e) {
-    //         this.closePopup();
-    //     });
 
 
         /****=============Dynamically display the markers and pop up==============****/
@@ -179,7 +107,7 @@
 
         for (var i = 0; i < markers.length; i++)
         {
-            var popup = '\'<img style="width: 100%" src=\'' + markers[i].img_url +   '\'> <p class="text-center"> ' + markers[i].contact_person +'<br> ' + markers[i].contact_description + '\'' ;
+            var popup = '<img style="width: 100%" src=\'' + markers[i].img_url +   '\'> <p class="text-center"> ' + markers[i].contact_person +'<br> ' + markers[i].contact_description;
                 console.log(popup);
             
             var m = L.marker([markers[i].latitude, markers[i].longitude])
